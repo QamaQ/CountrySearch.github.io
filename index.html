@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contry.css">
+    <!-- <link rel="stylesheet" href="css/contry.css"> -->
     <title>Country Search</title>
 </head>
 <body>
@@ -16,10 +16,11 @@
         </div>
     
     </header>
-
     <section id="contry-search">
         <div class="container">
-            <input type="text" placeholder="Search..." autocomplete="off" id="search-input">
+            <form action="" id="form">
+                <input type="text" placeholder="Search..." autocomplete="off" id="search-input">
+            </form>
             <select name="filter" id="filter">
                 <option value="">Filtrar</option>
                 <option value="1">Perú</option>
@@ -32,13 +33,13 @@
 
     <section id="contry-card">
         <div class="container">
-            <div id="contry">
-                
-            </div>
-        </div>
+            <div id="contry"></div>
+            <!-- <div id="detalles"></div> -->
     </section>
 
 
     <script src="src/main.js"></script>
+    <!-- <script src="src/info.js"></script> -->
+    
 </body>
 </html>

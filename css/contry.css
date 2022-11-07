@@ -3,3 +3,52 @@
     height: 100px;
 
 }
+#contry-card .card{
+    background-color: #EEFFFF;
+    margin: 20px 0;
+    border-radius: 10px;
+    height: 240px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: center; */
+    cursor: pointer;
+}
+
+#contry-card .card:hover{
+    width: 210px;
+    height: 250px;
+}
+
+#contry-card .flag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: red; */
+    border-top: 10px solid #4E73DF;
+    border-width: 5px;
+    width: 100px;
+}
+
+
+#contry-card img{
+    border-radius: 100%;
+    width: 90px;
+    margin-top: 10px;
+}
+
+
+
+
+
+#contry-card .name{
+    margin-top: 15px;
+    color: #10172a;
+    font-weight: bold;
+}
+#contry-card .region {
+    font-weight: bold;
+    color: #4E73DF;
+    font-size: 0.9em;
+}

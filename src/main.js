@@ -1,44 +1,65 @@
-const inputHtml = document.querySelector('#search-input');
 const contryHtml = document.querySelector('#contry');
+const form = document.getElementById('form')
+const searchInput = document.getElementById('search-input')
 
-// Cuando el DOM esté listo
-window.addEventListener('DOMContentLoaded', async () => {
-    const data = await apiContry()
+document.addEventListener('DOMContentLoaded', async e => {
+    return await fetchData()
 
-    // console.log(data)
-    renderContry(data);
 })
 
-// API
-async function apiContry(){
-    const paices = await fetch('https://restcountries.com/v3.1/all');
-    return await paices.json();
+const fetchData = async () => {
+    try {
+        const res = await fetch('https://restcountries.com/v3.1/all')
+        const data = await res.json()
+        contry(data);
+        formSearch(data)
+        // test(data)
+
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-
-
-
-function cardContry(contry){
-    // console.log(card.name.common)
-    return `<div class="card">
+let contryName = [];
+const contry = data => {
+    let contryData = "";
+    data.forEach(element => {
+        contryData += `
+            <div class="card" id="card">
+                <hr>
                 <div class="flag">
-                    <img src="${contry.flags.svg}">
+                    <img src="${element.flags.svg}">
+                    <p class="name" id="name">${element.name.common}</p>
+                    <p class="region">${element.region}</p>
                 </div>
-                <div class="name">
-                    <p>${contry.name.common}</p>
-                </div>
-                <div class="name">
-                    <p>${contry.region}</p>
-                </div>
-            </div>`
+                <a href="#detalles" id="refer">Más info</a>
+            </p>
+            </div>
+        `;
+
+        contryName.push(element.name.common);
+    });
+    contryHtml.innerHTML = contryData;
+    // console.log(contryData);
 }
-// Nombre de los pices
-const creatContry = contry => contry.map(cardContry).join('');
 
 
 
-function renderContry(contryName){
-    const itemString = creatContry(contryName)
-    contryHtml.innerHTML = itemString
+const formSearch = data => {
+    form.addEventListener('keyup', e => {
+        const letraCliente = searchInput.value.toLowerCase()
+        const arrayFiltrado = data.filter(item => {
+            const letraApi = item.name.common.toLowerCase()
+            if (letraApi.indexOf(letraCliente) !== -1) {
+                return item
+            }
+        })
+        contry(arrayFiltrado)
+    })
+}
 
+
+function test() {
+    const card = document.getElementById('card');
+    console.log(card);
 }

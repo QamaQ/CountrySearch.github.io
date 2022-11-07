@@ -72,42 +72,70 @@ header .title{
     font-weight: bold;
     border-radius: 10px;
 }
-
-
 #contry-card .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+#contry-card #contry{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    /* width: 300px; */
+    /* height: 300px; */
+  
 }
-#contry-card .card{
+#contry-card .card {
+    margin-top: 15px;
     background-color: #EEFFFF;
-    margin: 20px 0;
-    border-radius: 10px;
     height: 240px;
     width: 200px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px solid #10172a;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+
 }
 
-#contry-card .flag {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* background-color: red; */
-    border-top: 10px solid #4E73DF;
-    border-width: 5px;
+/* #contry-card .card:hover {
+    height: 250px;
+    width: 210px;
+    
+} */
+#contry-card hr{
+    background: #4E73DF;
+    height: 9px;
     width: 100px;
 }
-#contry-card img{
-    border-radius: 100%;
-    width: 90px;
+
+#contry-card .flag{
+    border-radius: 10px;
+    /* background-color: red; */
+    height: 100%;
+    /* width: 100%; */
+}
+#contry-card img {
     margin-top: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
 }
 
 
-#contry-card .name {
-    color: black;
+#contry-card .name{
+    margin-top: 15px;
+    color: #10172a;
+}
+
+#contry-card .region {
+    margin-top: 5px;
+    color: #4E73DF;
 }

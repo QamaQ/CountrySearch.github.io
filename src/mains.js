@@ -21,7 +21,7 @@ input.addEventListener('keyup', e =>{
 })
 // acceso a api
 async function apiContry(){
-    const paices = await fetch('https://restcountries.com/v3.1/all');
+    const paices = await fetch('https://restcountries.com/v3/all');
     return await paices.json();
 }
 
