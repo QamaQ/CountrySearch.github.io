@@ -20,7 +20,6 @@ const fetchData = async () => {
     }
 }
 
-let contryName = [];
 const contry = data => {
     let contryData = "";
     data.forEach(element => {
@@ -35,9 +34,20 @@ const contry = data => {
                 <a href="#detalles" id="refer">Más info</a>
             </p>
             </div>
+
+            <div class="card-detalles">
+                <img src="${element.coatOfArms.png}">
+                <div class="detalle-text">
+                    <p><b>Nombre oficial: </b>${element.name.official}</p>
+                    <p><b>Capital: </b>${element.capital}</p>
+                    <p><b>Población: </b>${element.population}</p>
+                    <p><b>Subregión: </b>${element.subregion}</p>
+                    <p><b>Zona horaria: </b>${element.timezones}</p>
+                    <p><b>Continente: </b>${element.continents}</p>
+                </div>
+            </div>
         `;
 
-        contryName.push(element.name.common);
     });
     contryHtml.innerHTML = contryData;
     // console.log(contryData);
