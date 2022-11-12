@@ -2,11 +2,20 @@
 const selectFilter = document.querySelectorAll(".textSelect");
 const contry = document.getElementById("contry")
 const btnDetalles =document.querySelectorAll('#btn-detalles');
+const form = document.getElementById('form');
+const inputSearch = document.getElementById('search-input');
+
+const contryDetalles = document.getElementById('contryDetalles');
+const closeDetalles = document.querySelector('.close');
 
 
 window.addEventListener('DOMContentLoaded', async e =>{
+
+    contry.innerHTML = `<h1>Cargando</h1>`;
+
     const dataContryAll = await fetchByContryAll();
-    renderContry(dataContryAll)
+    renderContry(dataContryAll);
+    text(dataContryAll);
 })
 
 
@@ -34,14 +43,32 @@ const templateContrys = elementos =>{
                     <p class="name" id="name">${element.name.common}</p>
                     <p class="region">${element.region}</p>
                 </div>
-                <label for="btn-details" id="btn-detalles">Más info</label>
+                <a href="detalles.html?name=${element.name.common}" target="contryDetalles" id="detalles">Más Info</a>
             </div>
         `;
+        
+
     })
-    contry.innerHTML = contrysData
+    contry.innerHTML = contrysData;
+    viewDetalles();
 }
 
+function viewDetalles(){
+   
+    const detalles = document.querySelectorAll('#detalles');
 
+    detalles.forEach(element =>{
+        element.addEventListener('click', () =>{
+            contryDetalles.classList.add('contryDetalles--show');
+        })
+    })
+
+    
+}
+// cerrar la ventana moda de ver los detalles
+closeDetalles.addEventListener('click', () =>{
+    contryDetalles.classList.remove('contryDetalles--show');
+})
 
 
 
@@ -80,14 +107,33 @@ const templatesRegion = elementos =>{
                     <p class="name" id="name">${elementos.name.common}</p>
                     <p class="region">${elementos.region}</p>
                 </div>
-                <a href="#detalles" id="refer">Más info</a>
+                <a href="detalles.html?name=${elementos.name.common}" target="contryDetalles" id="detalles">Más Info</a>
+
             </div>
         `;
     });
-    contry.innerHTML = regionData
+    contry.innerHTML = regionData;
+    viewDetalles();
+
 }
 
 
-function text(){
-    console.log(btnDetalles);
+function text(data){
+    form.addEventListener('keyup', e => {
+        const textSearch = inputSearch.value.toLowerCase();
+
+        const dataFilter = data.filter(names => {
+            const nameData = names.name.common.toLowerCase();
+            if(nameData.indexOf(textSearch) !== -1){
+                return names;
+            }
+        });
+        templateContrys(dataFilter)
+        // console.log(dataFilter);
+    })
 }
+
+
+
+
+

@@ -54,7 +54,9 @@
     margin: 10px 0;
 }
 
-#contry-card label{
+
+
+#contry-card a{
     margin: 10px 0;
     text-decoration: none;
     color: #4E73DF;
@@ -62,9 +64,10 @@
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+    width: 50%;
 }
 
-#contry-card label:hover{
+#contry-card a:hover{
     color: #10172a;
     background-color: #4E73DF;    
     border:1px solid #4E73DF;
