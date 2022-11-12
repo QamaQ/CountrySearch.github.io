@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/contry.css">
     <link rel="stylesheet" href="css/detalles.css">
     <title>Country Search</title>
 </head>
@@ -21,13 +22,18 @@
             <form action="" id="form">
                 <input type="text" placeholder="Search..." autocomplete="off" id="search-input">
             </form>
-            <select name="filter" id="filter">
-                <option value="">Filtrar</option>
-                <option value="1">Perú</option>
-                <option value="2">Chile</option>
-                <option value="3">Argentina</option>
-                <option value="4">Rusia</option>
-            </select>
+            
+            <div class="navFilter">
+                <p>Filter Regions</p>
+                <ul>
+                    <li class="textSelect">America</li>
+                    <li class="textSelect">Asia</li>
+                    <li class="textSelect">Africa</li>
+                    <li class="textSelect">Europe</li>
+                    <li class="textSelect">Oceania</li>
+                </ul>
+            </div>
+            
         </div>        
     </section>
 
@@ -35,11 +41,19 @@
         <div class="container">
             <div id="contry"></div>
             <!-- <div id="detalles"></div> -->
+        </div>
     </section>
 
 
+    <div class=".container-detalles">
+        <div class="temp-detalles">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente illum ipsam in odio amet dolores voluptatem distinctio repellendus repellat quo repudiandae expedita molestiae vero iure commodi, quos rem esse. Repudiandae.</p>
+        </div>
+    </div>
+
+
     <script src="src/main.js"></script>
-    <!-- <script src="src/info.js"></script> -->
+    <script src="src/detalles.js"></script>
     
 </body>
 </html>

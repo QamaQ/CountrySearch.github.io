@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #10172a;
+    color: #EEFFFF;
+
+}
+
+.container {
+    max-width: 1600px;
+    margin: auto;
+    min-width: 350px;
+}
+
+header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header .logo {
+    width: 200px;
+    height: 60px;
+}
+
+header .title{
+    padding: 20px 0;
+    letter-spacing: 5px;
+    font-size: 1.5em;
+}
+
+
+#contry-search{
+    display: flex;
+    flex-direction: r;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+#contry-search .container {
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#contry-search input {
+    border-radius: 10px;
+    width: 240px;
+    height: 30px;
+    border-radius: 10px;
+    border-color: #4E73DF;
+    color: #4E73DF;
+    padding: 5px 20px;
+    font-weight: bold;
+}
+#contry-search .navFilter {
+    margin-top: 10px;
+}
+
+#contry-search .navFilter p{
+    position: relative;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 2px 10px;
+    border: 2px solid #4E73DF;
+    border-radius: 10px;
+}
+#contry-search .navFilter p:hover{
+    color: #7a91d8;
+    background: #42495c;
+    
+}
+
+#contry-search .navFilter{
+    background: #42495c;
+    position: relative;
+}
+#contry-search .navFilter ul{
+    position: absolute;
+    width: 150px;
+    display: none;
+}
+
+
+#contry-search .navFilter ul li{
+    list-style: none;
+    font-size: 1.2em;
+    padding-left: 20px;
+    margin: 5px 0;
+    cursor: pointer;
+
+}
+#contry-search .navFilter ul li:hover{
+    background-color: #4E73DF18;
+    color: #4E73DF;
+    border-bottom: 2px solid #4E73DF;
+}
+
+#contry-search .navFilter:hover > ul{
+    display: initial;
+}
+
+
+
+@media (min-width: 850px){
+    
+    #contry-search .container{
+        flex-direction: row;
+        justify-content: space-between;
+        width: 50%;
+    }
+
+    #contry-search .navFilter {
+        margin-top: 0px;
+    }
+}

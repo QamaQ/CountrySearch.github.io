@@ -1,75 +1,93 @@
-const contryHtml = document.querySelector('#contry');
-const form = document.getElementById('form')
-const searchInput = document.getElementById('search-input')
+//Seleccionas todos los nodo que tenga la clase .textSelect
+const selectFilter = document.querySelectorAll(".textSelect");
+const contry = document.getElementById("contry")
+const btnDetalles =document.querySelectorAll('#btn-detalles');
 
-document.addEventListener('DOMContentLoaded', async e => {
-    return await fetchData()
 
+window.addEventListener('DOMContentLoaded', async e =>{
+    const dataContryAll = await fetchByContryAll();
+    renderContry(dataContryAll)
 })
 
-const fetchData = async () => {
-    try {
-        const res = await fetch('https://restcountries.com/v3.1/all')
-        const data = await res.json()
-        contry(data);
-        formSearch(data)
-        // test(data)
 
-    } catch (error) {
-        console.log(error)
-    }
+
+
+const fetchByContryAll = async () =>{
+    const response = await fetch("https://restcountries.com/v3.1/all");
+    return await response.json();
 }
 
-const contry = data => {
-    let contryData = "";
-    data.forEach(element => {
-        contryData += `
-            <div class="card" id="card">
+
+
+const renderContry = nameContry => {
+    templateContrys(nameContry);
+}
+
+const templateContrys = elementos =>{
+    let contrysData = ``;
+    elementos.forEach(element =>{
+        contrysData += `
+            <div class="card">
                 <hr>
-                <div class="flag">
-                    <img src="${element.flags.svg}">
+                <div class="card-data">
+                    <img src="${element.flags.svg}" >
                     <p class="name" id="name">${element.name.common}</p>
                     <p class="region">${element.region}</p>
                 </div>
-                <a href="#detalles" id="refer">Más info</a>
-            </p>
-            </div>
-
-            <div class="card-detalles">
-                <img src="${element.coatOfArms.png}">
-                <div class="detalle-text">
-                    <p><b>Nombre oficial: </b>${element.name.official}</p>
-                    <p><b>Capital: </b>${element.capital}</p>
-                    <p><b>Población: </b>${element.population}</p>
-                    <p><b>Subregión: </b>${element.subregion}</p>
-                    <p><b>Zona horaria: </b>${element.timezones}</p>
-                    <p><b>Continente: </b>${element.continents}</p>
-                </div>
+                <label for="btn-details" id="btn-detalles">Más info</label>
             </div>
         `;
-
-    });
-    contryHtml.innerHTML = contryData;
-    // console.log(contryData);
-}
-
-
-
-const formSearch = data => {
-    form.addEventListener('keyup', e => {
-        const letraCliente = searchInput.value.toLowerCase()
-        const arrayFiltrado = data.filter(item => {
-            const letraApi = item.name.common.toLowerCase()
-            if (letraApi.indexOf(letraCliente) !== -1) {
-                return item
-            }
-        })
-        contry(arrayFiltrado)
     })
+    contry.innerHTML = contrysData
 }
 
 
-function test() {
-    const card = document.getElementById('card');
-    console.log(card);
+
+
+
+//api filter regions
+const fetchByRegion =  async e =>{
+    const response = await fetch(`https://restcountries.com/v3.1/region/${e}`);
+    const data = await response.json();
+    return data;
+}
+//accedemos a cada elemento
+selectFilter.forEach(elementos =>{
+    //agregamos un evento cunado hacemos un click al elemento
+    elementos.addEventListener('click', (elemento) => {
+        //obtenemos el contenido del texto de cada elemento y lo almacenamos en una variable
+        let textFilter = elemento.target.textContent;
+        //pasamos la variable al funcion fetchByRegion() 
+        renderRegion(textFilter)
+    })
+})
+
+const renderRegion = async region =>{
+    const dataRegion = await fetchByRegion(region);
+    templatesRegion(dataRegion);
+    console.log(dataRegion);
+
+}
+
+const templatesRegion = elementos =>{
+    let regionData = ``
+    elementos.forEach(elementos => {
+        regionData += `
+            <div class="card">
+                <hr>
+                <div class="card-data">
+                    <img src="${elementos.flags.svg}" >
+                    <p class="name" id="name">${elementos.name.common}</p>
+                    <p class="region">${elementos.region}</p>
+                </div>
+                <a href="#detalles" id="refer">Más info</a>
+            </div>
+        `;
+    });
+    contry.innerHTML = regionData
+}
+
+
+function text(){
+    console.log(btnDetalles);
 }

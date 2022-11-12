@@ -1,82 +1,75 @@
-const inputHtml = document.querySelector('#search-input');
 const contryHtml = document.querySelector('#contry');
+const form = document.getElementById('form')
+const searchInput = document.getElementById('search-input')
 
-// const card = document.getElementById('card');
-
-let datosPaices = [];
-let namePaices = []
-
-// Cuando el DOM esté listo
-window.addEventListener('DOMContentLoaded', async () => {
-    const data = await apiContry();
-    datosPaices = data;
-    renderContry(datosPaices);
-    test()
+document.addEventListener('DOMContentLoaded', async e => {
+    return await fetchData()
 
 })
 
-// API
-async function apiContry(){
-    const paices = await fetch('https://restcountries.com/v3.1/all');
-    return await paices.json();
+const fetchData = async () => {
+    try {
+        const res = await fetch('https://restcountries.com/v3.1/all')
+        const data = await res.json()
+        contry(data);
+        formSearch(data)
+        // test(data)
+
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-
-
-function cardContry(contry){
-    // console.log(card.name.common)
-    let names = `
-        <div class="card" id="card">
-            <hr>
-            <div class="flag">
-                <img src="${contry.flags.svg}">
-                <p class="name" id="name">${contry.name.common}</p>
-                <p class="region">${contry.region}</p>
+const contry = data => {
+    let contryData = "";
+    data.forEach(element => {
+        contryData += `
+            <div class="card" id="card">
+                <hr>
+                <div class="flag">
+                    <img src="${element.flags.svg}">
+                    <p class="name" id="name">${element.name.common}</p>
+                    <p class="region">${element.region}</p>
+                </div>
+                <a href="#detalles" id="refer">Más info</a>
+            </p>
             </div>
-            <button class="button-info" id="button-info">Más Info</button>
-        </div>
-        <div class="card-info" id="card-info">
 
-        </div>
-    `
+            <div class="card-detalles">
+                <img src="${element.coatOfArms.png}">
+                <div class="detalle-text">
+                    <p><b>Nombre oficial: </b>${element.name.official}</p>
+                    <p><b>Capital: </b>${element.capital}</p>
+                    <p><b>Población: </b>${element.population}</p>
+                    <p><b>Subregión: </b>${element.subregion}</p>
+                    <p><b>Zona horaria: </b>${element.timezones}</p>
+                    <p><b>Continente: </b>${element.continents}</p>
+                </div>
+            </div>
+        `;
 
-
-    // test(names)
-    return names;
-    // return `
-    //     <div class="card" id="card">
-    //         <hr>
-    //         <div class="flag">
-    //             <img src="${contry.flags.svg}">
-    //             <p class="name" id="name">${contry.name.common}</p>
-    //             <p class="region">${contry.region}</p>
-    //         </div>
-    //         <button class="button-info" id="button-info">Más Info</button>
-    //     </div>
-    //     <div class="card-info" id="card-info">
-
-    //     </div>
-    // `
-
+    });
+    contryHtml.innerHTML = contryData;
+    // console.log(contryData);
 }
 
 
 
-// Nombre de los pices y detalles
-function creatContry(contry) {
-    contry.map(cardContry).join('');
+const formSearch = data => {
+    form.addEventListener('keyup', e => {
+        const letraCliente = searchInput.value.toLowerCase()
+        const arrayFiltrado = data.filter(item => {
+            const letraApi = item.name.common.toLowerCase()
+            if (letraApi.indexOf(letraCliente) !== -1) {
+                return item
+            }
+        })
+        contry(arrayFiltrado)
+    })
 }
 
-function renderContry(contryName){
-    const itemString = creatContry(contryName);
-    contryHtml.innerHTML = itemString
 
-}
-
-
-
-
-function test(nam){
-    // const contryName = document.getElementById('region');
-    console.log(namePaices);
+function test() {
+    const card = document.getElementById('card');
+    console.log(card);
 }
